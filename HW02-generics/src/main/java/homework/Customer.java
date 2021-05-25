@@ -1,7 +1,7 @@
 package homework;
 
-public class Customer {
-    private long id;
+public final class Customer {
+    private final long id;
     private String name;
     private long scores;
 
@@ -21,16 +21,18 @@ public class Customer {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public Customer setName(String name) {
+        Customer customer = new Customer(this.id,name,this.scores);
+        return customer;
     }
 
     public long getScores() {
         return scores;
     }
 
-    public void setScores(long scores) {
-        this.scores = scores;
+    public Customer setScores(long scores) {
+        Customer customer = new Customer(this.id,this.name,scores);
+        return customer;
     }
 
     @Override
@@ -49,7 +51,7 @@ public class Customer {
 
         Customer customer = (Customer) o;
 
-        if (id != customer.id) return false;
+        //if (id != customer.id) return false;
         //if (scores != customer.scores) return false;
         return true;
         //return name != null ? name.equals(customer.name) : customer.name == null;

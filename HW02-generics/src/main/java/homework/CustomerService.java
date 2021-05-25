@@ -1,36 +1,28 @@
 package homework;
 
 
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
-public class CustomerService {
+public class CustomerService implements Cloneable{
 
     //todo: 3. надо реализовать методы этого класса
     //важно подобрать подходящую Map-у, посмотрите на редко используемые методы, они тут полезны
-    private final Map<Customer, String> map = new HashMap<>();
-    private Customer customerKey = null;
+    private final NavigableMap<Customer, String> map = new TreeMap<>(Comparator.comparingLong(Customer::getScores));
+    private Long idCustomer = 0L;
 
     public Map.Entry<Customer, String> getSmallest() {
         //Возможно, чтобы реализовать этот метод, потребуется посмотреть как Map.Entry сделан в jdk
-        return map.entrySet().stream().min(Comparator.comparingLong(lg -> lg.getKey().getScores())).get(); // это "заглушка, чтобы скомилировать"
+        NavigableMap<Customer, String> mapClone =  new TreeMap<>(Comparator.comparingLong(Customer::getScores));
+        mapClone.putAll(map);
+        return mapClone.pollFirstEntry(); // это "заглушка, чтобы скомилировать"
     }
 
     public Map.Entry<Customer, String> getNext(Customer customer) {
         // это "заглушка, чтобы скомилировать"
-        if(customerKey == null && !map.entrySet().contains(customer)){
-            customerKey = new Customer(map.entrySet().stream().findFirst().get().getKey().getId(),map.entrySet().stream().findFirst().get().getKey().getName(),map.entrySet().stream().findFirst().get().getKey().getScores());
-            return map.entrySet().stream().findFirst().get();
+        if (map.containsKey(customer)){
+            return map.entrySet().stream().skip(customer.getId()).max(Comparator.comparingLong(lg -> lg.getKey().getScores())).get();
         }
-        if(customerKey.equals(customer)){
-            for (Map.Entry<Customer, String> entry: map.entrySet()) {
-                if (entry.getKey().getScores() > customerKey.getScores() && entry.getKey().getId() != customerKey.getId()) {
-                    return entry;
-                }
-            }
-        }
-        return null;
+        return map.higherEntry(customer);
     }
 
     public void add(Customer customer, String data) {
