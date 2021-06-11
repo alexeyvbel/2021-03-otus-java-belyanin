@@ -14,20 +14,25 @@ class Benchmark implements BenchmarkMBean {
     }
 
     void run() throws InterruptedException {
-        List<Double> list = new ArrayList<>();
 
-        for (int idx = 0; ; idx++) {
+        for (int idx = 0; idx < loopCounter; idx++) {
+            int local = size;
+            int index = 0;
+            List<Double> list = new ArrayList<>();
 
+            for (int i = 0; i < local; i++, index++) {
                 list.add(Math.random());
 
-            if (idx == loopCounter){
-                for (int i = 0; i < list.size()/2; i++) {
-                    list.remove(i);
+                if (index == loopCounter){
+                    for (int j = 0; j < list.size()/2; j++) {
+                        list.remove(j);
+                    }
+                    index=0;
                 }
-                idx=0;
             }
-            Thread.sleep(1000); //Label_1
+            Thread.sleep(1); //Label_1
         }
+
     }
 
     @Override

@@ -23,7 +23,7 @@ public class Boxing {
             counter += Integer.valueOf(1);
 
             if (idx % 1_000_000 == 0) {
-                Thread.sleep(1000);
+                Thread.sleep(1);
             }
         }
         System.out.println(counter);
