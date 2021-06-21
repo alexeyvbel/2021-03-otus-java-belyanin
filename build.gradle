@@ -39,6 +39,8 @@ allprojects {
             dependency("org.ow2.asm:asm-commons:${Versions.asm}")
             dependency("org.glassfish:javax.json:${Versions.glassfishJson}")
             dependency("com.google.protobuf:protobuf-java-util:${Versions.protobuf}")
+            dependency("org.testcontainers:junit-jupiter:${Versions.testcontainers}")
+            dependency("org.testcontainers:postgresql:${Versions.testcontainers}")
         }
     }
 
@@ -52,6 +54,7 @@ allprojects {
             force("commons-lang:commons-lang:2.5")
             force("org.codehaus.jackson:jackson-core-asl:1.8.8")
             force("org.codehaus.jackson:jackson-mapper-asl:1.8.3")
+            force("org.codehaus.jettison:jettison:1.1")
         }
     }
 }
