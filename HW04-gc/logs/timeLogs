@@ -1,0 +1,24 @@
+
+integer
+256m не выполняется
+512ь spend msec:17941, sec:17
+640m spend msec:17073, sec:17
+2g spend msec:16002, sec:16
+3g spend msec:16506, sec:16
+5g spend msec:16079, sec:16
+8g spend msec:16795, sec:16
+
+
+int
+256m spend msec:4362, sec:4
+512m spend msec:2493, sec:2
+640m spend msec:2441, sec:2
+1g spend msec:2881, sec:2
+2g spend msec:2870, sec:2
+
+-XX:MaxGCPauseMillis=10 256m spend msec:4414, sec:4
+-XX:MaxGCPauseMillis=10 512m spend msec:3501, sec:3
+                        1g spend msec:3229, sec:3
+
+                                256m spend msec:3475, sec:3
+-XX:MaxGCPauseMillis=1 000 000 1g spend msec:2695, sec:2
