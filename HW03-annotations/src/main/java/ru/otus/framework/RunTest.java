@@ -26,8 +26,8 @@ public class RunTest {
             method.invoke(clazz.getDeclaredConstructor().newInstance());
             System.out.println("Тест выполнен успешно, всего успешно " + ++testSuccess);
         } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Тест выполнен с ощибкой!! Всего с ошибкой " + ++testError);
+            testError ++;
+            System.out.println("Тест выполнен с ошибкой!! Всего с ошибкой " + testError);
         }
         testAll = testSuccess + testError;
     }
