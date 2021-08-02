@@ -1,10 +1,10 @@
-package ru.otus.main;
+package ru.otus.test;
 
 import ru.otus.annotations.After;
 import ru.otus.annotations.Before;
 import ru.otus.annotations.Test;
 
-public class runTest {
+public class TestClass {
 
     @Test
     public void doTest(){
