@@ -8,34 +8,34 @@ public class TestClass {
 
     @After
     public void doAfter2(){
-        System.out.println("Метод после выполнения теста 2");
+        System.out.println("Метод doAfter2");
         throw new RuntimeException();
     }
 
     @Test
     public void doTest(){
-        System.out.println("Выполняется тестирование 1");
+        System.out.println("Метод doTest 1" + 1/0);
     }
 
     @Before
     public void doBefore(){
-        System.out.println("Метод во выполенения теста");
+        System.out.println("Метод doBefore");
     }
 
     @After
     public void doAfter(){
-        System.out.println("Метод после выполнения теста");
+        System.out.println("Метод doAfter");
         throw new RuntimeException();
     }
 
     @Test
     public void doTest2(){
-        System.out.println("Выполняется тестирование 2");
+        System.out.println("Метод doTest2");
     }
 
     @Before
     public void doBefore2(){
-        System.out.println("Метод во выполенения теста 2");
+        System.out.println("Метод doBefore2");
     }
 
 

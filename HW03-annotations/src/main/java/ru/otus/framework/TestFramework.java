@@ -26,11 +26,16 @@ public class TestFramework {
         RunTest runTest = new RunTest();
 
         for (Method method: listTest) {
-            runTest.runListMethod(clazz,listBeforeTest);
-            runTest.runMethod(clazz,method);
-            runTest.runListMethod(clazz, listAfterTest);
+            try {
+                Object object = clazz.getDeclaredConstructor().newInstance();
+                runTest.runListMethod(object,clazz,listBeforeTest);
+                runTest.runMethod(object,clazz,method);
+                runTest.runListMethod(object,clazz,listAfterTest);
+                System.out.println("---------------------------------------");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
-        System.out.println("---------------------------------------");
         System.out.println("Всего успешно было выполнено " + runTest.getTestAll() +
                 " тестов, успешно " + runTest.getTestSuccess() +
                 ", завершились с ошибкой " + runTest.getTestError());

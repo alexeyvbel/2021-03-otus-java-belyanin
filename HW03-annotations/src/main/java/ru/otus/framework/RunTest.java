@@ -20,10 +20,11 @@ public class RunTest {
         return testAll;
     }
 
-    public void runMethod(Class clazz, Method method){
+    public void runMethod(Object object, Class clazz, Method runMethod){
         try {
+            Method method = clazz.getDeclaredMethod(runMethod.getName());
             method.setAccessible(true);
-            method.invoke(clazz.getDeclaredConstructor().newInstance());
+            method.invoke(object);
             System.out.println("Тест выполнен успешно, всего успешно " + ++testSuccess);
         } catch (Exception e) {
             testError ++;
@@ -32,9 +33,9 @@ public class RunTest {
         testAll = testSuccess + testError;
     }
 
-    public void runListMethod(Class clazz, List<Method> methods){
+    public void runListMethod(Object object, Class clazz, List<Method> methods){
         for (Method method: methods) {
-            runMethod(clazz, method);
+            runMethod(object, clazz, method);
         }
     }
 
