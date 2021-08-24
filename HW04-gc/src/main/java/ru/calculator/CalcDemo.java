@@ -22,7 +22,7 @@ public class CalcDemo {
         var data = new Data();
 
         for (var idx = 0; idx < counter; idx++) {
-             data.setValue(index);
+             data.setValue(idx);
             summator.calc(data);
 
             if (idx % 10_000_000 == 0) {

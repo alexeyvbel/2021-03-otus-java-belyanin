@@ -24,3 +24,10 @@
 
                                 256m spend msec:3475, sec:3
 -XX:MaxGCPauseMillis=1 000 000 1g spend msec:2695, sec:2
+
+
+Вынос создание переменной даты перед циклом for
+64m не выполняется
+128m spend msec:2067, sec:2
+256m spend msec:1884, sec:1
+512m spend msec:1843, sec:1
