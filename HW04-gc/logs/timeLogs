@@ -1,5 +1,5 @@
 
-integer
+Изменение хипа с integer
 256m не выполняется
 512ь spend msec:17941, sec:17
 640m spend msec:17073, sec:17
@@ -9,13 +9,15 @@ integer
 8g spend msec:16795, sec:16
 
 
-int
+Изменение хипа и замена integer на int
 256m spend msec:4362, sec:4
 512m spend msec:2493, sec:2
 640m spend msec:2441, sec:2
 1g spend msec:2881, sec:2
 2g spend msec:2870, sec:2
 
+
+Изменение паузы и хипа
 -XX:MaxGCPauseMillis=10 256m spend msec:4414, sec:4
 -XX:MaxGCPauseMillis=10 512m spend msec:3501, sec:3
                         1g spend msec:3229, sec:3
