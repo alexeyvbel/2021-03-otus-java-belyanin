@@ -5,6 +5,8 @@ import entity.Atm;
 import entity.Storage;
 import exception.AtmException;
 
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,7 +21,7 @@ public class UserServiceImpl implements UserService{
     public int getBalance() {
         return atm.getStorageList().stream()
                 .map(d -> d.getDenomination().getValue() * d.getAmount())
-                .mapToInt(i -> i)
+                .mapToInt(Integer::intValue)
                 .sum();
     }
 
@@ -29,7 +31,7 @@ public class UserServiceImpl implements UserService{
             if (storage.getDenomination() == denomination)
                 storage.increase(amount);
             else
-                atm.addNewStorage(denomination, amount);
+                continue;
         }
     }
 
@@ -42,10 +44,20 @@ public class UserServiceImpl implements UserService{
     }
 
     private void countAndGiveMoney(int moneyValue){
-        List<Denomination> denominationList =
-                atm.getStorageList()
-                        .stream()
-                        .map(d -> d.getDenomination())
-                        .collect(Collectors.toList());
+
+        int sum = moneyValue;
+
+        List<Denomination> denominationList = Arrays.stream(Denomination.values()).sorted(Comparator.comparingInt(Denomination::getValue).reversed()).collect(Collectors.toList());
+
+        for (Denomination denomination: denominationList) {
+            while (denomination.getValue() <= sum && atm.getAmountByDenomination(denomination) > 0){
+                sum -= denomination.getValue();
+                atm.removeDenominationFromStorage(denomination);
+            }
+        }
+
+        if (sum > 0){
+            throw  new AtmException("Недостаточно мелких купюр в банкомате");
+        }
     }
 }
