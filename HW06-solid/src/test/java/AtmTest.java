@@ -4,12 +4,13 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import service.AtmService;
 import service.UserService;
 import service.UserServiceImpl;
 
 public class AtmTest {
     private UserService userService;
-    private Atm atm;
+    private AtmService atm;
 
     @BeforeEach
     void setUp(){

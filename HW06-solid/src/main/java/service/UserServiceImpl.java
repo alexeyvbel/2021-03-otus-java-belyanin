@@ -1,7 +1,6 @@
 package service;
 
 import constants.Denomination;
-import entity.Atm;
 import entity.Storage;
 import exception.AtmException;
 
@@ -11,9 +10,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class UserServiceImpl implements UserService{
-    private final Atm atm;
+    private final AtmService atm;
 
-    public UserServiceImpl(Atm atm) {
+    public UserServiceImpl(AtmService atm) {
         this.atm = atm;
     }
 

@@ -1,6 +1,7 @@
 package entity;
 
 import constants.Denomination;
+import exception.AtmException;
 
 public class Storage {
 
@@ -20,15 +21,24 @@ public class Storage {
         return denomination.getValue() * amount;
     }
 
-    public void increase(Integer amount){
-        this.amount += amount;
+    public void increase(int amount){
+        if (checkAmount(amount))
+            this.amount += amount;
     }
 
-    public void reduce(Integer amount){
-        this.amount -= amount;
+    public void reduce(int amount){
+        if (checkAmount(amount))
+            this.amount -= amount;
     }
 
     public Denomination getDenomination() {
         return denomination;
+    }
+
+    private boolean checkAmount(int amount) {
+        if (amount <= 0){
+            throw  new AtmException("Значение банкнот не может быть отрицательным");
+        }
+        return true;
     }
 }

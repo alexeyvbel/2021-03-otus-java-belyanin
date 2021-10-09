@@ -1,12 +1,13 @@
 package entity;
 
 import constants.Denomination;
+import service.AtmService;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Atm {
+public class Atm implements AtmService {
 
     private List<Storage> storageList;
 
