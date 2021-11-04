@@ -1,19 +1,19 @@
 package ru.otus.listener.homework;
 
 
-import org.junit.jupiter.api.Disabled;
+import org.assertj.core.api.AssertionsForClassTypes;
 import org.junit.jupiter.api.Test;
-import ru.otus.listener.homework.HistoryListener;
 import ru.otus.model.Message;
 import ru.otus.model.ObjectForMessage;
 
 import java.util.ArrayList;
 
+import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
+
 
 class HistoryListenerTest {
 
     @Test
-    @Disabled //надо удалить
     void listenerTest() {
         //given
         var historyListener = new HistoryListener();

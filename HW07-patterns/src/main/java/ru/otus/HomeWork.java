@@ -3,10 +3,10 @@ package ru.otus;
 import ru.otus.handler.ComplexProcessor;
 import ru.otus.listener.homework.HistoryListener;
 import ru.otus.model.Message;
-import ru.otus.processor.DataTimer;
-import ru.otus.processor.ProcessorChangeFields;
-import ru.otus.processor.ProcessorException;
+import ru.otus.processor.homework.ProcessorChangeFields;
+import ru.otus.processor.homework.ProcessorException;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class HomeWork {
@@ -29,7 +29,7 @@ public class HomeWork {
            по аналогии с Demo.class
            из элеменов "to do" создать new ComplexProcessor и обработать сообщение
          */
-        var processors = List.of(new ProcessorException(new DataTimer()),
+        var processors = List.of(new ProcessorException(LocalDateTime::now),
                 new ProcessorChangeFields());
 
         var complexProcessor = new ComplexProcessor(processors, ex -> {});

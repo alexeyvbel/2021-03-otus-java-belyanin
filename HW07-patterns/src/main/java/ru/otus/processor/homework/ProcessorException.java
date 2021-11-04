@@ -1,6 +1,7 @@
-package ru.otus.processor;
+package ru.otus.processor.homework;
 
 import ru.otus.model.Message;
+import ru.otus.processor.Processor;
 
 public class ProcessorException implements Processor {
     private final DataTimer dataTimer;
@@ -11,8 +12,7 @@ public class ProcessorException implements Processor {
 
     @Override
     public Message process(Message message) {
-        int dataTimeSecond = dataTimer.getDataTimeSecond();
-        if (dataTimeSecond % 2 == 0){
+        if (dataTimer.getDateTime().getSecond() % 2 == 0){
             throw new RuntimeException("Exception on even second");
         }
         return message;

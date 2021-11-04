@@ -10,6 +10,9 @@ import ru.otus.processor.Processor;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThatExceptionOfType;
+import static org.mockito.Mockito.*;
 
 
 class ComplexProcessorTest {

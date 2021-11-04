@@ -141,7 +141,7 @@ public class Message {
                 .field9(this.field9)
                 .field10(this.field10)
                 .field11(this.field11)
-                .field13(this.field13 == null ? null : this.field13)
+                .field13(this.field13.clone())
                 .build();
     }
 
