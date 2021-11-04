@@ -6,3 +6,5 @@ include 'HW04-gc'
 include 'HW05-logging'
 include 'HW06-solid'
 include 'HW07-patterns'
+include 'HW08-json'
+
