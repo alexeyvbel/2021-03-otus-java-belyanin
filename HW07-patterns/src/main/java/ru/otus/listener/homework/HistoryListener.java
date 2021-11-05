@@ -7,7 +7,7 @@ import java.util.*;
 
 public class HistoryListener implements Listener, HistoryReader {
 
-    Map<Long, Message> history = new HashMap<>();
+    private final Map<Long, Message> history = new HashMap<>();
 
     @Override
     public void onUpdated(Message msg) {
