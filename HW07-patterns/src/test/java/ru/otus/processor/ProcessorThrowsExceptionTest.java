@@ -14,8 +14,8 @@ public class ProcessorThrowsExceptionTest {
 
     @Test
     void processTest(){
-        LocalDateTime dataTimer = LocalDateTime.of(1,1,1,1,1,2);
-        ProcessorException processorException = new ProcessorException(() -> dataTimer);
+        LocalDateTime evenSecondTime = LocalDateTime.of(1,1,1,1,1,2);
+        ProcessorException processorException = new ProcessorException(() -> evenSecondTime);
 
         RuntimeException exception = assertThrows(
                 RuntimeException.class, () -> processorException.process(Mockito.mock(Message.class))
