@@ -5,31 +5,30 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import service.AtmService;
-import service.UserService;
-import service.UserServiceImpl;
+
+import java.util.List;
 
 public class AtmTest {
-    private UserService userService;
     private AtmService atm;
 
     @BeforeEach
     void setUp(){
         atm = new Atm();
-        userService = new UserServiceImpl(atm);
     }
 
     @Test
     @DisplayName("Проверка значения баланса банкомата")
     void test1(){
-        userService.takeMoney(Denomination.TEN, 10);
-        userService.takeMoney(Denomination.FIFTY, 10);
-        userService.takeMoney(Denomination.HUNDRED, 10);
-        userService.takeMoney(Denomination.TWO_HUNDRED, 10);
-        userService.takeMoney(Denomination.THOUSAND, 10);
-        userService.takeMoney(Denomination.TWO_THOUSAND, 10);
-        userService.takeMoney(Denomination.FIVE_HUNDRED, 10);
-        userService.giveMoney(7990);
-        Assertions.assertEquals(userService.getBalance(),38600 - 7990);
+        atm.takeMoney(Denomination.TEN, 2);
+        atm.takeMoney(Denomination.TEN, 2);
+        atm.takeMoney(Denomination.FIFTY, 10);
+        atm.takeMoney(Denomination.HUNDRED, 10);
+        atm.takeMoney(Denomination.TWO_HUNDRED, 10);
+        atm.takeMoney(Denomination.THOUSAND, 10);
+        atm.takeMoney(Denomination.TWO_THOUSAND, 10);
+        atm.takeMoney(Denomination.FIVE_HUNDRED, 10);
+        List<Denomination> listDenomination = atm.giveMoney(7990);
+        Assertions.assertEquals(atm.getBalance(),38540 - 7990);
     }
 
 }
