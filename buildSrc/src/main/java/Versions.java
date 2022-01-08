@@ -8,4 +8,7 @@ public interface Versions {
 
     String lombok = "1.18.22";
     String gson = "2.8.8";
+    String flyway = "6.4.4";
+    String postgresql = "42.2.5";
+    String testcontainers = "1.14.3";
 }
