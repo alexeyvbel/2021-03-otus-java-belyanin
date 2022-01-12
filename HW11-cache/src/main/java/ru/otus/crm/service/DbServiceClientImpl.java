@@ -2,6 +2,7 @@ package ru.otus.crm.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import ru.otus.cachehw.HwCache;
 import ru.otus.core.repository.DataTemplate;
 import ru.otus.core.sessionmanager.TransactionManager;
 import ru.otus.crm.model.Client;
@@ -14,10 +15,12 @@ public class DbServiceClientImpl implements DBServiceClient {
 
     private final DataTemplate<Client> clientDataTemplate;
     private final TransactionManager transactionManager;
+    private final HwCache<Long, Client> cache;
 
-    public DbServiceClientImpl(TransactionManager transactionManager, DataTemplate<Client> clientDataTemplate) {
+    public DbServiceClientImpl(TransactionManager transactionManager, DataTemplate<Client> clientDataTemplate, HwCache<Long, Client> cache) {
         this.transactionManager = transactionManager;
         this.clientDataTemplate = clientDataTemplate;
+        this.cache = cache;
     }
 
     @Override
@@ -27,16 +30,25 @@ public class DbServiceClientImpl implements DBServiceClient {
             if (client.getId() == null) {
                 clientDataTemplate.insert(session, clientCloned);
                 log.info("created client: {}", clientCloned);
+                if (cache != null) {
+                    cache.put(clientCloned.getId(), clientCloned);
+                }
                 return clientCloned;
             }
             clientDataTemplate.update(session, clientCloned);
             log.info("updated client: {}", clientCloned);
+            if (cache != null) {
+                cache.put(clientCloned.getId(), clientCloned);
+            }
             return clientCloned;
         });
     }
 
     @Override
     public Optional<Client> getClient(long id) {
+        if (cache != null) {
+            return Optional.ofNullable(cache.get(id));
+        }
         return transactionManager.doInTransaction(session -> {
             var clientOptional = clientDataTemplate.findById(session, id);
             log.info("client: {}", clientOptional);

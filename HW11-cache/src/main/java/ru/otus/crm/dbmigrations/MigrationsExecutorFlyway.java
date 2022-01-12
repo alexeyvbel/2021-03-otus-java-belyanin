@@ -1,6 +1,7 @@
 package ru.otus.crm.dbmigrations;
 
 import org.flywaydb.core.Flyway;
+import org.hibernate.cfg.Configuration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -9,7 +10,10 @@ public class MigrationsExecutorFlyway {
 
     private final Flyway flyway;
 
-    public MigrationsExecutorFlyway(String dbUrl, String dbUserName, String dbPassword) {
+    public MigrationsExecutorFlyway(Configuration configuration) {
+        var dbUrl = configuration.getProperty("hibernate.connection.url");
+        var dbUserName = configuration.getProperty("hibernate.connection.username");
+        var dbPassword = configuration.getProperty("hibernate.connection.password");
         flyway = Flyway.configure()
                 .dataSource(dbUrl, dbUserName, dbPassword)
                 .locations("classpath:/migration")
