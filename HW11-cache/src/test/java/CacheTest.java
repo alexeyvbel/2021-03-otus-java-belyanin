@@ -12,7 +12,9 @@ import ru.otus.core.repository.HibernateUtils;
 import ru.otus.core.sessionmanager.TransactionManager;
 import ru.otus.core.sessionmanager.TransactionManagerHibernate;
 import ru.otus.crm.dbmigrations.MigrationsExecutorFlyway;
+import ru.otus.crm.model.Address;
 import ru.otus.crm.model.Client;
+import ru.otus.crm.model.Phone;
 import ru.otus.crm.service.DbServiceClientImpl;
 
 import java.util.Optional;
@@ -29,7 +31,7 @@ public class CacheTest {
     @BeforeAll
     static void setUp() {
         new MigrationsExecutorFlyway(configuration).executeMigrations();
-        sessionFactory = HibernateUtils.buildSessionFactory(configuration, Client.class);
+        sessionFactory = HibernateUtils.buildSessionFactory(configuration, Client.class, Phone.class, Address.class);
         transactionManager = new TransactionManagerHibernate(sessionFactory);
         clientTemplate = new DataTemplateHibernate<>(Client.class);
     }
@@ -53,7 +55,6 @@ public class CacheTest {
             Optional<Client> client = dbServiceClient.getClient(id);
             log.info("Used cache: {}", id);
         }
-        log.info("Cache size: {} ", cache);
         cache.removeListener(listener);
     }
 
